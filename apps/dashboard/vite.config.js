@@ -22,10 +22,10 @@ export default defineConfig(({ mode }) => {
                         setup(build) {
                             build.onLoad(
                                 { filter: /src\/.*\.js$/ },
-                                async (args) => ({
+                                async (arguments_) => ({
                                     loader: 'jsx',
                                     contents: await fs.readFile(
-                                        args.path,
+                                        arguments_.path,
                                         'utf8',
                                     ),
                                 }),
@@ -36,7 +36,6 @@ export default defineConfig(({ mode }) => {
             },
         },
         build: {
-            outDir: 'build',
             sourcemap: isProduction && IS_CI_ENV,
             emptyOutDir: isProduction ? true : false,
         },
